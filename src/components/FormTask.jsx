@@ -1,8 +1,25 @@
-import React from 'react'
-import { Task } from './Task'
+import React, { useState } from 'react'
 
-export const FormTask = () => {
+export const FormTask = ({ addTask }) => {
+  const [taskName, setTaskName] = useState('')
+
+  const btnAddTask = () => {
+    if (taskName.trim() !== '') {
+      addTask(taskName)
+      setTaskName('')
+    }
+  }
+
   return (
-    <div>FormTask</div>
+    <div>
+      <label htmlFor="add_task">Add new task</label>
+      <input 
+        type='text' 
+        id='add_task' 
+        value={taskName}
+        onChange={(e) => setTaskName(e.target.value)} 
+      />
+      <button onClick={btnAddTask}>➕ Add task</button>
+    </div>
   )
 }
